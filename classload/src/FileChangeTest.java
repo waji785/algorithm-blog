@@ -2,10 +2,10 @@ import java.io.*;
 
 public class FileChangeTest {
     public static void main(String[] args) throws IOException {
-        File file = new File("F:\\algorithm-blog\\EvlJar\\out\\production\\EvlJar\\com\\aa\\SalartCaler.class");
+        File file = new File("F:\\algorithm-blog\\EvlJar\\SalartCaler.class");
         try {
             FileInputStream fis = new FileInputStream(file);
-            File targetFile = new File("F:\\algorithm-blog\\EvlJar\\out\\production\\EvlJar\\com\\aa\\SalartCaler.class");
+            File targetFile = new File("F:\\algorithm-blog\\EvlJar\\SalartCaler.class");
             FileOutputStream fos = new FileOutputStream(targetFile);
 
             int code =1;

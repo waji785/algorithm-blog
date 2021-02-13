@@ -7,7 +7,7 @@ public class DemoOA {
         Double money;
 //        URL jarPath = new URL("file:F:\\algorithm-blog\\EvlJar\\ide-eval-resetter-2.1.13.jar");
 //        URLClassLoader urlClassLoader = new URLClassLoader(new URL[] {jarPath});
-        SalaryClassLoader salaryClassLoader = new SalaryClassLoader("F:\\algorithm-blog\\EvlJar\\out\\production\\EvlJar\\com\\aa\\");
+        SalaryClassLoader salaryClassLoader = new SalaryClassLoader("F:\\algorithm-blog\\EvlJar\\");
         do {
             money = calSalary(salary,salaryClassLoader);
             System.out.println("实际到手工资" + money);
