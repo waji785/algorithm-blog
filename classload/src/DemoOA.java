@@ -5,16 +5,17 @@ public class DemoOA {
     public static void main(String[] args) throws Exception {
         Double salary = 2000.00;
         Double money;
-        URL jarPath = new URL("file:F:\\algorithm-blog\\EvlJar\\ide-eval-resetter-2.1.13.jar");
-        URLClassLoader urlClassLoader = new URLClassLoader(new URL[] {jarPath});
+//        URL jarPath = new URL("file:F:\\algorithm-blog\\EvlJar\\ide-eval-resetter-2.1.13.jar");
+//        URLClassLoader urlClassLoader = new URLClassLoader(new URL[] {jarPath});
+        SalaryClassLoader salaryClassLoader = new SalaryClassLoader("F:\\algorithm-blog\\EvlJar\\out\\production\\EvlJar\\com\\aa\\");
         do {
-            money = calSalary(salary,urlClassLoader);
+            money = calSalary(salary,salaryClassLoader);
             System.out.println("实际到手工资" + money);
             Thread.sleep(1000);
         } while (true);
         }
         private static Double calSalary(Double salary,ClassLoader ClassLoader) throws Exception{
-            Class<?> clazz = ClassLoader.loadClass("com.aa.SalaryCaler");
+            Class<?> clazz = ClassLoader.loadClass("SalartCaler");
             Object object = clazz.newInstance();
             return (Double)clazz.getMethod("cal",Double.class).invoke(object,salary);
     }
