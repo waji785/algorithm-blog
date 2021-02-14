@@ -1,15 +1,11 @@
-import java.net.URL;
-import java.net.URLClassLoader;
 //将方法写入jar包并读取调用，目的是混淆隐藏实际调用的方法细节
 public class DemoOA {
     public static void main(String[] args) throws Exception {
         Double salary = 2000.00;
         Double money;
-//        URL jarPath = new URL("file:F:\\algorithm-blog\\EvlJar\\ide-eval-resetter-2.1.13.jar");
-//        URLClassLoader urlClassLoader = new URLClassLoader(new URL[] {jarPath});
-        SalaryClassLoader salaryClassLoader = new SalaryClassLoader("F:\\algorithm-blog\\EvlJar\\");
+        SalaryJarLoader salaryJarLoader = new SalaryJarLoader("F:\\algorithm-blog\\EvlJar\\SalartCaler.jar");
         do {
-            money = calSalary(salary,salaryClassLoader);
+            money = calSalary(salary,salaryJarLoader);
             System.out.println("实际到手工资" + money);
             Thread.sleep(1000);
         } while (true);
