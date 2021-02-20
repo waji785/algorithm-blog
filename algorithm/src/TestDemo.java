@@ -25,5 +25,19 @@ public class TestDemo {
         int[] e =new int[]{121,314,213,252,12141,213457,8534,7726,2,5252,626,25,2,75474,73};
         bubbleSort.bubbleSort(e);
         System.out.println(Arrays.toString(e));
+
+        //堆排序
+        HeapSort heapSort = new HeapSort();
+        int[] f = new int[]{12,3153,14214,1231,313,131,14143,25};
+        heapSort.heapSort(f);
+        System.out.println(Arrays.toString(f));
+
+        //归并
+        MergeSort mergeSort = new MergeSort();
+        int[] g = new int[]{12,3153,14214,1231,313,131,14143,25};
+        mergeSort.mergeSort(g,0,g.length-1);
+        System.out.println(Arrays.toString(g));
+
+
     }
 }
