@@ -1,26 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 func main() {
-	s := []int{2, 3, 5, 7, 11, 13}
-	printSlice(s)
+	router := gin.Default()
 
-	// 截取切片使其长度为 0
-	s = s[:0]
-	printSlice(s)
-	s= nil
-	printSlice(s)
-	s =[]int{2}
-	// 拓展其长度
-	s = s[:4]
-	printSlice(s)
+	// This handler will match /user/john but will not match /user/ or /user
+	router.GET("/user/:name", func(c *gin.Context) {
+	name := c.Param("name")
+	c.String(http.StatusOK, "Hello %s", name)
+})
 
-	// 舍弃前两个值
-	s = s[2:]
-	printSlice(s)
-}
+	// However, this one will match /user/john/ and also /user/john/send
+	// If no other routers match /user/john, it will redirect to /user/john/
+	router.GET("/user/:name/*action", func(c *gin.Context) {
+	name := c.Param("name")
+	action := c.Param("action")
+	message := name + " is " + action
+	c.String(http.StatusOK, message)
+})
 
-func printSlice(s []int) {
-	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+// For each matched request Context will hold the route definition
+router.POST("/user/:name/*action", func(c *gin.Context) {
+	c.FullPath() == "/user/:name/*action" // true
+})
+
+	router.Run(":8080")
 }
