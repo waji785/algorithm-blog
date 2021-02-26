@@ -11,7 +11,6 @@ var (
 	keyboardEventsChan = make(chan keyboardEvent)
 )
 
-// Game type
 type Game struct {
 	area   *area
 	score  int
@@ -79,7 +78,7 @@ mainloop:
 			switch e.eventType {
 			case MOVE:
 				d := keyToDirection(e.key)
-				g.area.snake.changeDirection(d)
+				g.area.snake.changeDirecion(d)
 			case RETRY:
 				g.retry()
 			case END:

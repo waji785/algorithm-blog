@@ -8,7 +8,7 @@ import (
 type area struct {
 	food       *food
 	snake      *snake
-	hasfood    func(*area, coord) bool
+	hasFood    func(*area, coord) bool
 	height     int
 	width      int
 	pointsChan chan (int)
@@ -28,6 +28,7 @@ func newArea(s *snake, p chan (int), h, w int) *area {
 
 	return a
 }
+
 func (a *area) moveSnake() error {
 	if err := a.snake.move(); err != nil {
 		return err
@@ -70,7 +71,7 @@ func (a *area) placeFood() {
 	a.food = newFood(x, y)
 }
 
-func (a2 *area) hasFood(a *area, c coord) bool {
+func hasFood(a *area, c coord) bool {
 	return c.x == a.food.x && c.y == a.food.y
 }
 
