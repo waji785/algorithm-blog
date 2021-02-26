@@ -1,4 +1,4 @@
-package game_of_snake
+package snakegame
 
 import (
 	"os"

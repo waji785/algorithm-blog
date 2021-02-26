@@ -1,7 +1,7 @@
 package main
 
-import "github.com/DyegoCosta/snake-game/snake"
+import "golanglearning/snakegame"
 
 func main() {
-	snake.NewGame().Start()
+	snakegame.NewGame().Start()
 }

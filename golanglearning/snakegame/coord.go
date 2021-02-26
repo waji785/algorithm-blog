@@ -1,4 +1,4 @@
-package game_of_snake
+package snakegame
 
 type coord struct {
 	x, y int
