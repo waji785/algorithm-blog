@@ -1,20 +1,19 @@
-package main
+package game_of_snake
 
-import "fmt"
+func abstractListener(fxChan chan func() string) {
+	fxChan <- func() string {
+		return "Hello, functions in channel"
+	}
+}
 
 func main() {
-	type ErrorCode int
+	fxChan := make(chan func() string)
+	defer close(fxChan)
 
-	const (
-		ERROR_SUCCESS ErrorCode = iota
-		ERROR_FIRST
-		ERROR_SECOND
-		ERROR_THIRD
-	)
-
-	error_code := ERROR_SUCCESS
-	fmt.Println("default: ", error_code) // default:  0
-
-	error_code = ERROR_THIRD
-	fmt.Println("Second: ", error_code) // Second:  2
+	go abstractListener(fxChan)
+	select {
+	case rfx := <-fxChan:
+		msg := rfx()
+		println("recieved message:", msg)
+	}
 }

@@ -1,8 +1,7 @@
-package main
+package game_of_snake
 
 import (
 	"errors"
-	"golang.org/x/sys/windows"
 )
 
 const (
@@ -19,7 +18,7 @@ type snake struct {
 	length    int
 }
 
-func newSnake(d direction, b []windows.Coord) *snake {
+func newSnake(d direction, b []coord) *snake {
 	return &snake{
 		length:    len(b),
 		body:      b,
