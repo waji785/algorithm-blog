@@ -1,6 +1,8 @@
 package main
 
-import "golanglearning/snakegame"
+import (
+	"snakegame/snakegame"
+)
 
 func main() {
 	snakegame.NewGame().Start()

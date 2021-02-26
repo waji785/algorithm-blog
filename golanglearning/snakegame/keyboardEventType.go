@@ -15,6 +15,8 @@ type keyboardEvent struct {
 	key       termbox.Key
 }
 
+var a direction
+
 func keyToDirection(k termbox.Key) direction {
 	switch k {
 	case termbox.KeyArrowLeft:
@@ -26,6 +28,7 @@ func keyToDirection(k termbox.Key) direction {
 	case termbox.KeyArrowUp:
 		return UP
 	}
+	return a
 }
 func listenToKeyboard(evChan chan keyboardEvent) {
 	termbox.SetInputMode(termbox.InputAlt)
