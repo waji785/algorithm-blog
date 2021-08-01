@@ -1,4 +1,4 @@
-#include "threadpool.h"
+#ifndef _THREADPOOL_H
 #include <pthread.h>
 //task struct
 typedef struct Task{
@@ -42,3 +42,5 @@ struct ThreadPool{
     //1=destory threadpool,0=keep
     int shutdown;
 };
+void* worker(void* arg);
+#endif
