@@ -5,25 +5,25 @@ import (
 )
 
 type Pool struct {
-	workerNum int
+	WorkerNum int
 
-	taskQueue chan Task
+	TaskQueue chan Task
 
 	dispatcher *dispatcher
 
 	wg sync.WaitGroup
 }
-func NewPool(workerNum int,taskQueueLen int) *Pool{
-	taskQueue:=make(chan Task,taskQueueLen)
-	workerQueue:=make(chan *worker,workerNum)
+func NewPool(WorkerNum int, TaskQueueLen int) *Pool{
+	TaskQueue :=make(chan Task, TaskQueueLen)
+	workerQueue:=make(chan *worker, WorkerNum)
 	return &Pool{
-		taskQueue: taskQueue,
-		dispatcher:newDispatcher(workerQueue,taskQueue),
+		TaskQueue:  TaskQueue,
+		dispatcher: newDispatcher(workerQueue, TaskQueue),
 	}
 }
 
 func(p *Pool)AddTask(task Task){
-	p.taskQueue<-task
+	p.TaskQueue <-task
 }
 func(p *Pool)Done(){
 	p.wg.Done()
@@ -35,6 +35,6 @@ func(p *Pool)Wait(){
 	p.wg.Wait()
 }
 func(p *Pool)Release(){
-	p.dispatcher.stop<-struct{}{}
-	<-p.dispatcher.stop
+	p.dispatcher.Stop <-struct{}{}
+	<-p.dispatcher.Stop
 }

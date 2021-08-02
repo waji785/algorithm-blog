@@ -2,27 +2,27 @@ package threadpoolgo
 
 
 type worker struct{
-	workerQueue chan *worker
-	taskQueue chan Task
-	stop chan struct{}
+	WorkerQueue chan *worker
+	TaskQueue   chan Task
+	Stop        chan struct{}
 }
-func newWorker(workerQueue chan *worker)*worker{
+func newWorker(WorkerQueue chan *worker)*worker{
 	return &worker{
-		workerQueue: workerQueue,
-		taskQueue: make(chan Task),
-		stop: make(chan struct{}),
+		WorkerQueue: WorkerQueue,
+		TaskQueue:   make(chan Task),
+		Stop:        make(chan struct{}),
 	}
 }
 func (w *worker) start()  {
 	go func() {
 		var task Task
 		for{
-			w.workerQueue<-w
+			w.WorkerQueue <-w
 			select{
-				case task=<-w.taskQueue:
+				case task=<-w.TaskQueue:
 				task()
-				case<-w.stop:
-				w.stop<- struct{}{}
+				case<-w.Stop:
+				w.Stop <- struct{}{}
 				return
 			}
 		}
